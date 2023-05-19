@@ -1671,7 +1671,7 @@
         <member name="M:JWT.JwtValidator.CompareCryptoWithSignature(System.String,System.String)">
             <remarks>In the future this method can be opened for extension hence made protected virtual</remarks>
         </member>
-        <member name="M:JWT.JwtValidator.ValidateExpClaim(System.Collections.Generic.IDictionary{System.String,System.Object},System.Double)">
+        <member name="M:JWT.JwtValidator.ValidateExpClaim(System.Collections.Generic.IReadOnlyDictionary{System.String,System.Object},System.Double)">
             <summary>
             Verifies the 'exp' claim.
             </summary>
@@ -1679,12 +1679,17 @@
             <exception cref="T:JWT.Exceptions.SignatureVerificationException" />
             <exception cref="T:JWT.Exceptions.TokenExpiredException" />
         </member>
-        <member name="M:JWT.JwtValidator.ValidateNbfClaim(System.Collections.Generic.IDictionary{System.String,System.Object},System.Double)">
+        <member name="M:JWT.JwtValidator.ValidateNbfClaim(System.Collections.Generic.IReadOnlyDictionary{System.String,System.Object},System.Double)">
             <summary>
             Verifies the 'nbf' claim.
             </summary>
             <remarks>See https://tools.ietf.org/html/rfc7519#section-4.1.5</remarks>
             <exception cref="T:JWT.Exceptions.SignatureVerificationException" />
+        </member>
+        <member name="T:JWT.Serializers.Converters.DictionaryStringObjectJsonConverterCustomWrite">
+            <remarks>
+            Copied from https://github.com/joseftw/JOS.SystemTextJsonDictionaryStringObjectJsonConverter/blob/develop/src/JOS.SystemTextJsonDictionaryObjectModelBinder/DictionaryStringObjectJsonConverterCustomWrite.cs
+            </remarks>
         </member>
         <member name="M:JWT.Serializers.DelegateJsonSerializerFactory.#ctor(JWT.IJsonSerializer)">
             <summary>
@@ -1728,6 +1733,20 @@
             <exception cref="T:System.ArgumentNullException" />
         </member>
         <member name="M:JWT.Serializers.JsonNetSerializer.Deserialize(System.Type,System.String)">
+            <inheritdoc />
+            <exception cref="T:System.ArgumentNullException" />
+            <exception cref="T:System.ArgumentException" />
+        </member>
+        <member name="T:JWT.Serializers.SystemTextSerializer">
+            <summary>
+            JSON serializer using Newtonsoft.Json implementation.
+            </summary>
+        </member>
+        <member name="M:JWT.Serializers.SystemTextSerializer.Serialize(System.Object)">
+            <inheritdoc />
+            <exception cref="T:System.ArgumentNullException" />
+        </member>
+        <member name="M:JWT.Serializers.SystemTextSerializer.Deserialize(System.Type,System.String)">
             <inheritdoc />
             <exception cref="T:System.ArgumentNullException" />
             <exception cref="T:System.ArgumentException" />
